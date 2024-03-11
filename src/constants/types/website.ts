@@ -12,3 +12,9 @@ export interface WebsiteDto {
   url: string;
   type: WebsiteType;
 }
+
+export interface WebsiteFormDto {
+  name: string;
+  url: string;
+  type: string;
+}

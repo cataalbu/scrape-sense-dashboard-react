@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AppRouter from './routes/AppRouter';
 import { ThemeProvider } from '@emotion/react';
-import { CssBaseline, createMuiTheme } from '@mui/material';
+import { CssBaseline, createTheme } from '@mui/material';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     button: {
       textTransform: 'none',

@@ -43,12 +43,26 @@ export function AppTable({
         </TableHead>
         {!isLoading ? (
           <TableBody>
-            {isSuccess ? children : <TableRow>{error}</TableRow>}
+            {isSuccess ? (
+              children
+            ) : (
+              <TableRow>
+                <TableCell colSpan={headCells.length} align="center">
+                  {error}
+                </TableCell>
+              </TableRow>
+            )}
           </TableBody>
         ) : (
-          <Box sx={{ width: '100%' }}>
-            <LinearProgress />
-          </Box>
+          <TableBody>
+            <TableRow>
+              <TableCell colSpan={headCells.length} align="center">
+                <Box sx={{ width: '100%' }}>
+                  <LinearProgress />
+                </Box>
+              </TableCell>
+            </TableRow>
+          </TableBody>
         )}
       </Table>
     </TableContainer>

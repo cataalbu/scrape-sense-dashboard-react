@@ -7,6 +7,8 @@ import LoginPage from '@/pages/LoginPage/LoginPage';
 import { RedirectAuthenticatedUser, RequireAuth } from '@/utils';
 
 import { Role } from '@/constants/enums';
+import WebsiteDetailsPage from '@/pages/dashboard/websites/WebsiteDetailsPage/WebsiteDetailsPage';
+import WebsiteCreatePage from '@/pages/dashboard/websites/WebsiteCreatePage/WebsiteCreatePage';
 
 export default function AppRouter() {
   return (
@@ -26,7 +28,12 @@ export default function AppRouter() {
       {/* Guest */}
       <Route element={<RequireAuth requiredRoles={[Role.GUEST]} />}>
         <Route path="/dashboard/*" element={<DashboardLayout />}>
-          <Route path="websites" element={<WebsitesListPage />} />
+          <Route path="websites/*">
+            <Route path=":id" element={<WebsiteDetailsPage />} />
+            <Route path="create" element={<WebsiteCreatePage />} />
+            <Route path="" element={<WebsitesListPage />} />
+          </Route>
+
           <Route path="" element={<DashboardHomePage />} />
         </Route>
       </Route>

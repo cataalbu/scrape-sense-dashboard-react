@@ -1,4 +1,4 @@
-import { Website } from '../../../constants/types';
+import { Website, WebsiteDto } from '../../../constants/types';
 import { apiSlice } from '../../api/apiSlice';
 
 export const websitesApiSlice = apiSlice.injectEndpoints({
@@ -9,7 +9,18 @@ export const websitesApiSlice = apiSlice.injectEndpoints({
     getWebsiteById: builder.query<Website, string>({
       query: (id) => `/websites/${id}`,
     }),
+    createWebsite: builder.mutation<Website, WebsiteDto>({
+      query: (website) => ({
+        url: '/websites',
+        method: 'POST',
+        body: website,
+      }),
+    }),
   }),
 });
 
-export const { useGetWebsiteByIdQuery, useGetWebsitesQuery } = websitesApiSlice;
+export const {
+  useGetWebsiteByIdQuery,
+  useGetWebsitesQuery,
+  useCreateWebsiteMutation,
+} = websitesApiSlice;
