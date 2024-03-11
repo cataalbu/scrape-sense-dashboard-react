@@ -1,6 +1,7 @@
 enum Paths {
   'DASHBOARD' = '/dashboard',
-  'ABOUT' = '/about',
+  'WEBSITES' = '/dashboard/websites',
+  'WEBSITE' = '/dashboard/websites/:id',
 }
 
 export default Paths;

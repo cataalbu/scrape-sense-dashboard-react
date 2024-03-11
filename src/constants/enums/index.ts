@@ -3,3 +3,8 @@ export enum Role {
   USER = 'user',
   GUEST = 'guest',
 }
+
+export enum WebsiteType {
+  CSR = 'csr',
+  SSR = 'ssr',
+}

@@ -1,12 +1,9 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
-import { useAppSelector } from '../redux/hooks';
-import { Role } from '../constants/enums';
 
-export default function RequireAuth({
-  requiredRoles,
-}: {
-  requiredRoles: Role[];
-}) {
+import { useAppSelector } from '@/redux/hooks';
+import { Role } from '@/constants/enums';
+
+export function RequireAuth({ requiredRoles }: { requiredRoles: Role[] }) {
   const { user } = useAppSelector((state) => state.auth);
   const location = useLocation();
 

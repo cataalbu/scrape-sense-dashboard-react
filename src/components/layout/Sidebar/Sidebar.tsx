@@ -11,10 +11,13 @@ import {
   ListItemText,
   CSSObject,
   Theme,
+  Button,
 } from '@mui/material';
 
 import { ChevronLeft, ChevronRight } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+import { useAppDispatch } from '../../../redux/hooks';
+import { logOut } from '../../../redux/features/auth/authSlice';
 
 const drawerWidth = 240;
 
@@ -65,12 +68,17 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function Sidebar({
+export function Sidebar({
   listItems,
 }: {
   listItems: { label: string; to: string; icon: JSX.Element }[];
 }) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
+  const dispatch = useAppDispatch();
+
+  const handleLogout = () => {
+    dispatch(logOut());
+  };
 
   return (
     <Drawer variant="permanent" open={open}>
@@ -109,6 +117,7 @@ export default function Sidebar({
           </ListItem>
         ))}
       </List>
+      <Button onClick={handleLogout}>Logout</Button>
     </Drawer>
   );
 }

@@ -1,8 +1,9 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
-import { useAppSelector } from '../redux/hooks';
-import Paths from '../routes/paths';
 
-export default function RedirectAuthenticatedUser() {
+import { useAppSelector } from '@/redux/hooks';
+import Paths from '@/routes/paths';
+
+export function RedirectAuthenticatedUser() {
   const { user } = useAppSelector((state) => state.auth);
   const location = useLocation();
 

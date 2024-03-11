@@ -1,9 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
-import LoginPage from '../pages/LoginPage/LoginPage';
-import RequireAuth from '../utils/RequireAuth';
-import RedirectAuthenticatedUser from '../utils/RedirectAuthenticatedUser';
-import { Role } from '../constants/enums';
-import DashboardLayout from '../components/layout/DashboardLayout/DashboardLayout';
+
+import WebsitesListPage from '@/pages/dashboard/websites/WebsitesListPage/WebsitesListPage';
+import DashboardHomePage from '@/pages/dashboard/DashboardHomePage/DashboradHomePage';
+import { DashboardLayout } from '@/components/layout';
+import LoginPage from '@/pages/LoginPage/LoginPage';
+import { RedirectAuthenticatedUser, RequireAuth } from '@/utils';
+
+import { Role } from '@/constants/enums';
 
 export default function AppRouter() {
   return (
@@ -23,7 +26,8 @@ export default function AppRouter() {
       {/* Guest */}
       <Route element={<RequireAuth requiredRoles={[Role.GUEST]} />}>
         <Route path="/dashboard/*" element={<DashboardLayout />}>
-          <Route path="" element={<div>Welcome to dashboard</div>} />
+          <Route path="websites" element={<WebsitesListPage />} />
+          <Route path="" element={<DashboardHomePage />} />
         </Route>
       </Route>
 
