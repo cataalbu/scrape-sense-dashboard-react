@@ -1,4 +1,3 @@
-import { Website } from '../../../constants/types';
 import { WebsiteType } from '../../../constants/enums';
 import { AppTable } from '@/components/common/tables/AppTable/AppTable';
 import {
@@ -14,21 +13,13 @@ import Paths from '@/routes/paths';
 import { MoreVert, Delete, Edit } from '@mui/icons-material';
 import { useCallback, useState } from 'react';
 import { DeleteDialog } from '@/components/common';
-
-interface WebsitesTableProps {
-  websites: Website[];
-  isLoading: boolean;
-  isSuccess: boolean;
-  error: string;
-  deleteWebsiteAction: (id: string) => void;
-}
+import { WebsitesTableProps } from './WebsitesTable';
 
 export function WebsitesTable({
   websites,
   isLoading,
   isSuccess,
   error,
-  deleteWebsiteAction,
 }: WebsitesTableProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [selectedWebsite, setSelectedWebsite] = useState<string | null>(null);
@@ -61,10 +52,10 @@ export function WebsitesTable({
     setDeleteDialogOpen(false);
   };
 
-  const deleteWebsite = useCallback(async () => {
-    await deleteWebsiteAction(selectedWebsite!);
+  const deleteWebsite = useCallback(() => {
+    console.log('delete website', selectedWebsite);
     setDeleteDialogOpen(false);
-  }, [deleteWebsiteAction, selectedWebsite]);
+  }, [selectedWebsite]);
 
   return (
     <>
@@ -142,8 +133,8 @@ export function WebsitesTable({
                 </MenuItem>
                 <MenuItem
                   onClick={() => {
-                    handleClose();
                     handleDeleteDialogOpen();
+                    handleClose();
                   }}
                 >
                   <Delete /> Delete
@@ -155,7 +146,7 @@ export function WebsitesTable({
       </AppTable>
       <DeleteDialog
         title="Delete website"
-        content={`Are you sure you want to delete website with ID: ${selectedWebsite}?`}
+        content={`Are you sure you want to delete website with id ${selectedWebsite}?`}
         open={deleteDialogOpen}
         handleClose={handleDeleteDialogClose}
         handleAgree={deleteWebsite}

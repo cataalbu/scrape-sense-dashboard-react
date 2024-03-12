@@ -7,7 +7,6 @@ const baseQuery = fetchBaseQuery({
 
   prepareHeaders: (headers: Headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
-    console.log(token);
     headers.set('Content-Type', 'application/json');
     if (token) {
       headers.set('Authorization', `Bearer ${token}`);
@@ -20,5 +19,6 @@ export const apiSlice = createApi({
   reducerPath: 'rootApi',
   baseQuery,
   tagTypes: ['ScrapeTasks', 'Products', 'Websites'],
+  keepUnusedDataFor: 20,
   endpoints: () => ({}),
 });

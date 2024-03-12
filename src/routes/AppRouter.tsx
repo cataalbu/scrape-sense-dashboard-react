@@ -9,6 +9,7 @@ import { RedirectAuthenticatedUser, RequireAuth } from '@/utils';
 import { Role } from '@/constants/enums';
 import WebsiteDetailsPage from '@/pages/dashboard/websites/WebsiteDetailsPage/WebsiteDetailsPage';
 import WebsiteCreatePage from '@/pages/dashboard/websites/WebsiteCreatePage/WebsiteCreatePage';
+import WebsiteEditPage from '@/pages/dashboard/websites/WebsiteEditPage/WebsiteEditPage';
 
 export default function AppRouter() {
   return (
@@ -31,6 +32,7 @@ export default function AppRouter() {
           <Route path="websites/*">
             <Route path=":id" element={<WebsiteDetailsPage />} />
             <Route path="create" element={<WebsiteCreatePage />} />
+            <Route path="edit/:id" element={<WebsiteEditPage />} />
             <Route path="" element={<WebsitesListPage />} />
           </Route>
 
