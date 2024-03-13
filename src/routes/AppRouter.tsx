@@ -4,12 +4,14 @@ import WebsitesListPage from '@/pages/dashboard/websites/WebsitesListPage/Websit
 import DashboardHomePage from '@/pages/dashboard/DashboardHomePage/DashboradHomePage';
 import { DashboardLayout } from '@/components/layout';
 import LoginPage from '@/pages/LoginPage/LoginPage';
-import { RedirectAuthenticatedUser, RequireAuth } from '@/utils';
+import { RedirectAuthenticatedUser, RequireAuth } from '@/components/utils';
 
 import { Role } from '@/constants/enums';
 import WebsiteDetailsPage from '@/pages/dashboard/websites/WebsiteDetailsPage/WebsiteDetailsPage';
 import WebsiteCreatePage from '@/pages/dashboard/websites/WebsiteCreatePage/WebsiteCreatePage';
 import WebsiteEditPage from '@/pages/dashboard/websites/WebsiteEditPage/WebsiteEditPage';
+import ProductsDetailsPage from '@/pages/dashboard/products/ProductDetailsPage/ProductsDetailsPage';
+import ProductsListPage from '@/pages/dashboard/products/ProductsListPage/ProductsListPage';
 
 export default function AppRouter() {
   return (
@@ -34,6 +36,11 @@ export default function AppRouter() {
             <Route path="create" element={<WebsiteCreatePage />} />
             <Route path="edit/:id" element={<WebsiteEditPage />} />
             <Route path="" element={<WebsitesListPage />} />
+          </Route>
+
+          <Route path="products/*">
+            <Route path=":id" element={<ProductsDetailsPage />} />
+            <Route path="" element={<ProductsListPage />} />
           </Route>
 
           <Route path="" element={<DashboardHomePage />} />

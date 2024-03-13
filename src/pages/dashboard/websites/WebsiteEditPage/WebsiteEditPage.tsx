@@ -12,7 +12,7 @@ import { WebsiteForm } from '@/components/websites';
 import { websiteFormSchema } from '@/constants/schemas';
 
 export default function WebsiteEditPage() {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const { data: website } = useGetWebsiteByIdQuery(id || '');
   const [updateWebsite, { isLoading }] = useUpdateWebsiteMutation();
   const navigate = useNavigate();

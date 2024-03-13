@@ -1,6 +1,4 @@
-import { Website } from '../../../constants/types';
-import { WebsiteType } from '../../../constants/enums';
-import { AppTable } from '@/components/common/tables/AppTable/AppTable';
+import { useCallback, useState } from 'react';
 import {
   Button,
   IconButton,
@@ -9,11 +7,15 @@ import {
   TableCell,
   TableRow,
 } from '@mui/material';
-import { Link, generatePath, useNavigate } from 'react-router-dom';
-import Paths from '@/routes/paths';
 import { MoreVert, Delete, Edit } from '@mui/icons-material';
-import { useCallback, useState } from 'react';
+import { Link, generatePath, useNavigate } from 'react-router-dom';
+
 import { DeleteDialog } from '@/components/common';
+import { AppTable } from '@/components/common/tables/AppTable/AppTable';
+
+import Paths from '@/routes/paths';
+import { WebsiteType } from '../../../constants/enums';
+import { Website } from '../../../constants/types';
 
 interface WebsitesTableProps {
   websites: Website[];

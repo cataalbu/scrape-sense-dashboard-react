@@ -3,6 +3,7 @@ import { Box } from '@mui/material';
 import {
   Dashboard as DashboardIcon,
   Web as WebIcon,
+  SportsMotorsports as SportsMotorsportsIcon,
 } from '@mui/icons-material';
 
 // import styles from './DashboardLayout.module.scss';
@@ -17,6 +18,11 @@ export function DashboardLayout() {
         listItems={[
           { label: 'Dashboard', icon: <DashboardIcon />, to: Paths.DASHBOARD },
           { label: 'Websites', icon: <WebIcon />, to: Paths.WEBSITES },
+          {
+            label: 'Products',
+            icon: <SportsMotorsportsIcon />,
+            to: Paths.PRODUCTS,
+          },
         ]}
       />
       <Box component="main" sx={{ p: 3, width: '100%' }}>
