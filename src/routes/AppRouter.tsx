@@ -12,6 +12,8 @@ import WebsiteCreatePage from '@/pages/dashboard/websites/WebsiteCreatePage/Webs
 import WebsiteEditPage from '@/pages/dashboard/websites/WebsiteEditPage/WebsiteEditPage';
 import ProductsDetailsPage from '@/pages/dashboard/products/ProductDetailsPage/ProductsDetailsPage';
 import ProductsListPage from '@/pages/dashboard/products/ProductsListPage/ProductsListPage';
+import ScrapeTasksListPage from '@/pages/dashboard/scrapeTasks/ScrapeTasksListPage/ScrapeTasksListPage';
+import ScrapeTasksDetailsPage from '@/pages/dashboard/scrapeTasks/ScrapeTaskDetailsPage/ScrapeTasksDetailsPage';
 
 export default function AppRouter() {
   return (
@@ -41,6 +43,11 @@ export default function AppRouter() {
           <Route path="products/*">
             <Route path=":id" element={<ProductsDetailsPage />} />
             <Route path="" element={<ProductsListPage />} />
+          </Route>
+
+          <Route path="scrape-tasks/*">
+            <Route path="" element={<ScrapeTasksListPage />} />
+            <Route path=":id" element={<ScrapeTasksDetailsPage />} />
           </Route>
 
           <Route path="" element={<DashboardHomePage />} />

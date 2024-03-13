@@ -10,13 +10,6 @@ export const productsApiSlice = apiSlice.injectEndpoints({
     getProductById: builder.query<Product, string>({
       query: (id) => `/products/${id}`,
       providesTags: (_result, _error, id) => [{ type: 'Products', id }],
-      transformResponse: (response: Product) => ({
-        ...response,
-        prices: response.prices.map((price) => ({
-          ...price,
-          date: new Date(price.date),
-        })),
-      }),
     }),
   }),
 });

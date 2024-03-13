@@ -23,6 +23,11 @@ export function DashboardLayout() {
             icon: <SportsMotorsportsIcon />,
             to: Paths.PRODUCTS,
           },
+          {
+            label: 'Scrape tasks',
+            icon: <SportsMotorsportsIcon />,
+            to: Paths.SCRAPE_TASKS,
+          },
         ]}
       />
       <Box component="main" sx={{ p: 3, width: '100%' }}>

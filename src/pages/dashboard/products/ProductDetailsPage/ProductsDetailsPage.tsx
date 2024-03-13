@@ -1,7 +1,9 @@
-import { useGetProductByIdQuery } from '@/redux/features/products/productsApiSlice';
-import { fDate } from '@/utils';
-import { fCurrency } from '@/utils/formatNumber';
 import { useParams } from 'react-router-dom';
+import { LineChart } from '@mui/x-charts/LineChart';
+
+import { useGetProductByIdQuery } from '@/redux/features/products/productsApiSlice';
+import { fStringDate } from '@/utils';
+import { fCurrency } from '@/utils/formatNumber';
 
 export default function ProductsDetailsPage() {
   const { id } = useParams<{ id: string }>();
@@ -34,8 +36,27 @@ export default function ProductsDetailsPage() {
               <p>Last price</p>
               <p>
                 {fCurrency(product.prices[product.prices.length - 1].price)} at{' '}
-                {fDate(product.prices[product.prices.length - 1].date)}
+                {fStringDate(product.prices[product.prices.length - 1].date)}
               </p>
+              <LineChart
+                xAxis={[
+                  {
+                    label: 'Date',
+                    scaleType: 'time',
+                    valueFormatter: (date) => fStringDate(date),
+                    data: product.prices.map((p) => new Date(p.date)),
+                    tickInterval: product.prices.map((p) => new Date(p.date)),
+                  },
+                ]}
+                series={[
+                  {
+                    data: product.prices.map((p) => p.price),
+                    showMark: ({ index }) => index % 2 === 0,
+                  },
+                ]}
+                width={500}
+                height={300}
+              />
             </div>
           ) : (
             <div>

@@ -1,6 +1,6 @@
 interface Price {
   price: number;
-  date: Date;
+  date: string;
 }
 export interface Product {
   id: string;
