@@ -25,7 +25,7 @@ export default function ScrapeTasksDetailsPage() {
                 <div>
                   <h2>{scrapeTask.id}</h2>
                   <p>Website</p>
-                  <p>{scrapeTask.website.name}</p>
+                  <p>{scrapeTask.website?.name || '-'}</p>
                   <p>Type</p>
                   <p>{scrapeTask.type}</p>
                   <p>Status</p>
