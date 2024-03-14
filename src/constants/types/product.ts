@@ -13,3 +13,9 @@ export interface Product {
   };
   prices: Price[];
 }
+
+export interface ProductListDto {
+  data: Omit<Product, 'prices'>[];
+  count: number;
+  pageTotal: number;
+}

@@ -13,6 +13,12 @@ export interface WebsiteDto {
   type: WebsiteType;
 }
 
+export interface WebsiteListDto {
+  data: Website[];
+  count: number;
+  pageTotal: number;
+}
+
 export interface WebsiteFormDto {
   name: string;
   url: string;

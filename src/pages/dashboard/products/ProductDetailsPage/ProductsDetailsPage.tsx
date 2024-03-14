@@ -8,7 +8,7 @@ import { fCurrency } from '@/utils/formatNumber';
 export default function ProductsDetailsPage() {
   const { id } = useParams<{ id: string }>();
   const { data: product, error, isLoading } = useGetProductByIdQuery(id || '');
-  console.log(product, error, isLoading);
+
   return (
     <div style={{ width: '100%' }}>
       <h1>Website Details</h1>

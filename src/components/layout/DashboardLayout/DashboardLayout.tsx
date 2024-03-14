@@ -4,9 +4,9 @@ import {
   Dashboard as DashboardIcon,
   Web as WebIcon,
   SportsMotorsports as SportsMotorsportsIcon,
+  Webhook as WebhookIcon,
 } from '@mui/icons-material';
 
-// import styles from './DashboardLayout.module.scss';
 import Paths from '../../../routes/paths';
 
 import { Sidebar } from '../Sidebar/Sidebar';
@@ -25,7 +25,7 @@ export function DashboardLayout() {
           },
           {
             label: 'Scrape tasks',
-            icon: <SportsMotorsportsIcon />,
+            icon: <WebhookIcon />,
             to: Paths.SCRAPE_TASKS,
           },
         ]}

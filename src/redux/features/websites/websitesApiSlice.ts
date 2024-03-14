@@ -1,10 +1,26 @@
-import { Website, WebsiteDto } from '../../../constants/types';
+import { Website, WebsiteDto, WebsiteListDto } from '../../../constants/types';
 import { apiSlice } from '../../api/apiSlice';
 
 export const websitesApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getWebsites: builder.query<Website[], void>({
-      query: () => '/websites',
+    getWebsites: builder.query<
+      WebsiteListDto,
+      { skip?: number; limit?: number }
+    >({
+      query: ({ skip, limit }) => {
+        let queryString = '/websites';
+        const params = new URLSearchParams();
+        if (skip !== undefined) {
+          params.append('skip', skip.toString());
+        }
+        if (limit !== undefined) {
+          params.append('limit', limit.toString());
+        }
+        if (params.toString()) {
+          queryString += '?' + params.toString();
+        }
+        return queryString;
+      },
       providesTags: ['Websites'],
     }),
     getWebsiteById: builder.query<Website, string>({

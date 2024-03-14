@@ -10,6 +10,11 @@ interface ProductsTableProps {
   isLoading: boolean;
   isSuccess: boolean;
   error: string;
+  page: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+  rowsPerPage: number;
+  setRowsPerPage: React.Dispatch<React.SetStateAction<number>>;
+  count: number;
 }
 
 export function ProductsTable({
@@ -17,6 +22,11 @@ export function ProductsTable({
   isLoading,
   isSuccess,
   error,
+  page,
+  setPage,
+  rowsPerPage,
+  setRowsPerPage,
+  count,
 }: ProductsTableProps) {
   return (
     <>
@@ -24,6 +34,11 @@ export function ProductsTable({
         isLoading={isLoading}
         isSuccess={isSuccess}
         error={error}
+        page={page}
+        setPage={setPage}
+        rowsPerPage={rowsPerPage}
+        setRowsPerPage={setRowsPerPage}
+        count={count}
         headCells={[
           {
             id: 'id',

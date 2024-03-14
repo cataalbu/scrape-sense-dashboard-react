@@ -9,6 +9,7 @@ import {
   TableHead,
   TableRow,
 } from '@mui/material';
+import { AppTablePagination } from '../AppTablePagination/AppTablePagination';
 
 interface AppTableProps {
   children: React.ReactElement[] | React.ReactElement;
@@ -20,6 +21,11 @@ interface AppTableProps {
   isLoading: boolean;
   isSuccess: boolean;
   error: string;
+  page: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+  rowsPerPage: number;
+  setRowsPerPage: React.Dispatch<React.SetStateAction<number>>;
+  count: number;
 }
 
 export function AppTable({
@@ -28,7 +34,28 @@ export function AppTable({
   isSuccess,
   error,
   headCells,
+  page,
+  setPage,
+  rowsPerPage,
+  setRowsPerPage,
+  count,
 }: AppTableProps) {
+  const handleChangePage = (
+    _event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null,
+    newPage: number
+  ) => {
+    console.log(newPage);
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage: React.ChangeEventHandler<
+    HTMLTextAreaElement | HTMLInputElement
+  > = (event) => {
+    console.log('clicked');
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
   return (
     <TableContainer component={Paper} sx={{ width: '100%' }}>
       <Table sx={{ width: '100%' }}>
@@ -65,6 +92,13 @@ export function AppTable({
           </TableBody>
         )}
       </Table>
+      <AppTablePagination
+        count={count}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        handleChangePage={handleChangePage}
+        handleChangeRowsPerPage={handleChangeRowsPerPage}
+      />
     </TableContainer>
   );
 }

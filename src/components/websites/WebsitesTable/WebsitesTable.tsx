@@ -23,6 +23,11 @@ interface WebsitesTableProps {
   isSuccess: boolean;
   error: string;
   deleteWebsiteAction: (id: string) => void;
+  page: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+  rowsPerPage: number;
+  setRowsPerPage: React.Dispatch<React.SetStateAction<number>>;
+  count: number;
 }
 
 export function WebsitesTable({
@@ -31,6 +36,11 @@ export function WebsitesTable({
   isSuccess,
   error,
   deleteWebsiteAction,
+  page,
+  setPage,
+  rowsPerPage,
+  setRowsPerPage,
+  count,
 }: WebsitesTableProps) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [selectedWebsite, setSelectedWebsite] = useState<string | null>(null);
@@ -74,6 +84,11 @@ export function WebsitesTable({
         isLoading={isLoading}
         isSuccess={isSuccess}
         error={error}
+        page={page}
+        setPage={setPage}
+        rowsPerPage={rowsPerPage}
+        setRowsPerPage={setRowsPerPage}
+        count={count}
         headCells={[
           {
             id: 'id',

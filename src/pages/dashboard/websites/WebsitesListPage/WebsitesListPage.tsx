@@ -7,15 +7,19 @@ import {
   useGetWebsitesQuery,
 } from '@/redux/features/websites/websitesApiSlice';
 import Paths from '@/routes/paths';
+import { useState } from 'react';
 
 export default function WebsitesListPage() {
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(25);
+
   const {
     data: websites,
     isLoading,
     isSuccess,
     error,
     refetch,
-  } = useGetWebsitesQuery();
+  } = useGetWebsitesQuery({ skip: page * rowsPerPage, limit: rowsPerPage });
   const [deleteWebsite] = useDeleteWebsiteMutation();
   return (
     <div style={{ width: '100%' }}>
@@ -29,9 +33,14 @@ export default function WebsitesListPage() {
         Create new website
       </Button>
       <WebsitesTable
-        websites={websites || []}
+        websites={websites?.data || []}
         isLoading={isLoading}
         isSuccess={isSuccess}
+        page={page}
+        setPage={setPage}
+        rowsPerPage={rowsPerPage}
+        setRowsPerPage={setRowsPerPage}
+        count={websites?.count || 0}
         error={error?.toString() || ''}
         deleteWebsiteAction={async (id) => {
           await deleteWebsite(id);

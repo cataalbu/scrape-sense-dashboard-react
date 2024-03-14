@@ -14,3 +14,9 @@ export interface CreateScrapeTaskDto {
   website: string;
   type: ScrapeTaskType;
 }
+
+export interface ScrapeTaskListDto {
+  data: ScrapeTask[];
+  count: number;
+  pageTotal: number;
+}
