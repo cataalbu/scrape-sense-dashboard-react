@@ -94,7 +94,7 @@ export function Sidebar({
         </IconButton>
       </DrawerHeader>
       <Divider />
-      <List style={{ background: 'var(--main)', height: '100%' }}>
+      <List style={{ height: '100%' }}>
         {listItems.map((item) => (
           <ListItem key={item.label} disablePadding sx={{ display: 'block' }}>
             <ListItemButton
@@ -123,7 +123,13 @@ export function Sidebar({
           </ListItem>
         ))}
       </List>
-      <Button onClick={handleLogout}>Logout</Button>
+      <Button
+        variant="contained"
+        onClick={handleLogout}
+        style={{ margin: '1rem' }}
+      >
+        Logout
+      </Button>
     </Drawer>
   );
 }

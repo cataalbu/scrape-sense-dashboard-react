@@ -1,0 +1,25 @@
+.products-details-page {
+  width: '100%';
+
+  .title {
+    margin-bottom: 4rem;
+  }
+
+  .product-info {
+    display: flex;
+  }
+
+  .info-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    .card {
+      margin-right: 2rem;
+    }
+  }
+
+  .price-history-title {
+    margin-top: 4rem;
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
+}

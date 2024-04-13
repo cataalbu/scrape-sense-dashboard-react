@@ -62,7 +62,11 @@ export function AppTable({
         <TableHead>
           <TableRow>
             {headCells.map((headCell) => (
-              <TableCell key={headCell.id} align={headCell.align}>
+              <TableCell
+                key={headCell.id}
+                align={headCell.align}
+                style={{ fontWeight: 700, fontSize: '1rem' }}
+              >
                 {headCell.label}
               </TableCell>
             ))}

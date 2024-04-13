@@ -5,39 +5,57 @@ import { useGetProductByIdQuery } from '@/redux/features/products/productsApiSli
 import { fStringDate } from '@/utils';
 import { fCurrency } from '@/utils/formatNumber';
 
+import styles from './ProductsDetailsPage.module.scss';
+import { InfoCard } from '@/components/common';
+
 export default function ProductsDetailsPage() {
   const { id } = useParams<{ id: string }>();
   const { data: product, error, isLoading } = useGetProductByIdQuery(id || '');
 
   return (
-    <div style={{ width: '100%' }}>
-      <h1>Website Details</h1>
+    <div className={styles['products-details-page']}>
       {isLoading ? (
         <p>Loading...</p>
       ) : (
         <>
           {product ? (
             <div>
-              <h2>{product.name}</h2>
-              <img
-                src={product.imageUrl}
-                alt={product.name}
-                style={{
-                  width: '200px',
-                  height: '200px',
-                  objectFit: 'cover',
-                  borderRadius: '50%',
-                }}
-              />
-              <p>Id on website</p>
-              <p>{product.websiteId}</p>
-              <p>Website</p>
-              <p>{product.website.name}</p>
-              <p>Last price</p>
-              <p>
-                {fCurrency(product.prices[product.prices.length - 1].price)} at{' '}
-                {fStringDate(product.prices[product.prices.length - 1].date)}
-              </p>
+              <h1 className={styles['title']}>{product.name}</h1>
+              <div className={styles['product-info']}>
+                <img
+                  src={product.imageUrl}
+                  alt={product.name}
+                  style={{
+                    width: '300px',
+                    height: '300px',
+                    objectFit: 'cover',
+                    marginRight: '3rem',
+                  }}
+                />
+                <div className={styles['info-cards-container']}>
+                  <InfoCard
+                    title="Website"
+                    value={product.website.name}
+                    className={styles['card']}
+                  />
+                  <InfoCard
+                    title="Id on website"
+                    value={product.websiteId}
+                    className={styles['card']}
+                  />
+                  <InfoCard
+                    title="Lasst price"
+                    value={`${fCurrency(
+                      product.prices[product.prices.length - 1].price
+                    )} at 
+                  ${fStringDate(
+                    product.prices[product.prices.length - 1].date
+                  )}`}
+                    className={styles['card']}
+                  />
+                </div>
+              </div>
+              <p className={styles['price-history-title']}>Price history</p>
               <LineChart
                 xAxis={[
                   {
@@ -48,6 +66,12 @@ export default function ProductsDetailsPage() {
                     tickInterval: product.prices.map((p) => new Date(p.date)),
                   },
                 ]}
+                yAxis={[
+                  {
+                    label: 'Price',
+                    scaleType: 'linear',
+                  },
+                ]}
                 series={[
                   {
                     data: product.prices.map((p) => p.price),
@@ -55,7 +79,7 @@ export default function ProductsDetailsPage() {
                   },
                 ]}
                 width={500}
-                height={300}
+                height={400}
               />
             </div>
           ) : (
