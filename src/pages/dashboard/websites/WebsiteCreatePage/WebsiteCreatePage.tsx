@@ -6,7 +6,7 @@ import { useCreateWebsiteMutation } from '@/redux/features/websites/websitesApiS
 import { WebsiteDto, WebsiteFormDto } from '@/constants/types';
 import Paths from '@/routes/paths';
 import { WebsiteForm } from '@/components/websites';
-import { websiteFormSchema } from '@/constants/schemas';
+import { websiteFormSchema } from '@/constants/yup';
 
 export default function WebsiteCreatePage() {
   const [createWebsite, { isLoading }] = useCreateWebsiteMutation();

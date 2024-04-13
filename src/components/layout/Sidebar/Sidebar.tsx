@@ -44,8 +44,9 @@ const closedMixin = (theme: Theme): CSSObject => ({
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
+  backgroundColor: 'var(--main)',
   alignItems: 'center',
-  justifyContent: 'flex-end',
+  justifyContent: 'space-between',
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
@@ -57,7 +58,9 @@ const Drawer = styled(MuiDrawer, {
   width: drawerWidth,
   flexShrink: 0,
   whiteSpace: 'nowrap',
+  backgroundColor: 'var(--main)',
   boxSizing: 'border-box',
+  height: '100%',
   ...(open && {
     ...openedMixin(theme),
     '& .MuiDrawer-paper': openedMixin(theme),
@@ -83,12 +86,15 @@ export function Sidebar({
   return (
     <Drawer variant="permanent" open={open}>
       <DrawerHeader>
+        {open && (
+          <p style={{ fontWeight: 700, fontSize: '1.5rem' }}>ScrapeSense</p>
+        )}
         <IconButton onClick={() => setOpen((prev) => !prev)}>
           {!open ? <ChevronRight /> : <ChevronLeft />}
         </IconButton>
       </DrawerHeader>
       <Divider />
-      <List>
+      <List style={{ background: 'var(--main)', height: '100%' }}>
         {listItems.map((item) => (
           <ListItem key={item.label} disablePadding sx={{ display: 'block' }}>
             <ListItemButton

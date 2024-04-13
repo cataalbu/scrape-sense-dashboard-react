@@ -5,9 +5,9 @@ export const websitesApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getWebsites: builder.query<
       WebsiteListDto,
-      { skip?: number; limit?: number }
+      { skip?: number; limit?: number } | void
     >({
-      query: ({ skip, limit }) => {
+      query: ({ skip, limit } = {}) => {
         let queryString = '/websites';
         const params = new URLSearchParams();
         if (skip !== undefined) {

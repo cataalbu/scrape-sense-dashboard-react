@@ -9,7 +9,7 @@ import {
 import { Website, WebsiteFormDto } from '@/constants/types';
 import Paths from '@/routes/paths';
 import { WebsiteForm } from '@/components/websites';
-import { websiteFormSchema } from '@/constants/schemas';
+import { websiteFormSchema } from '@/constants/yup';
 
 export default function WebsiteEditPage() {
   const { id } = useParams<{ id: string }>();

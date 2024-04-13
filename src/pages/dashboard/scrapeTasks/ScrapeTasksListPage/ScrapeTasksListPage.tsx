@@ -1,10 +1,15 @@
-import ScrapeTasksTable from '@/components/scrapeTasks/ScrapeTasksTable/ScrapeTasksTable';
-import { useGetScrapeTasksQuery } from '@/redux/features/scrapeTasks/scrapeTasksApiSlice';
 import { useState } from 'react';
+import { Button } from '@mui/material';
+
+import { useGetScrapeTasksQuery } from '@/redux/features/scrapeTasks/scrapeTasksApiSlice';
+import ScrapeTasksTable from '@/components/scrapeTasks/ScrapeTasksTable/ScrapeTasksTable';
+import { StartScrapeTaskModal } from '@/components/scrapeTasks/StartScrapeTaskModal/StartScrapeTaskModal';
 
 export default function ScrapeTasksListPage() {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(25);
+  const [startScrapeTaskModalOpen, setStartScrapeTaskModalOpen] =
+    useState(false);
 
   const {
     data: scrapeTasks,
@@ -14,16 +19,29 @@ export default function ScrapeTasksListPage() {
   } = useGetScrapeTasksQuery({ skip: page * rowsPerPage, limit: rowsPerPage });
 
   return (
-    <ScrapeTasksTable
-      scrapeTasks={scrapeTasks?.data || []}
-      isLoading={isLoading}
-      isSuccess={isSuccess}
-      error={error?.toString() || ''}
-      page={page}
-      setPage={setPage}
-      rowsPerPage={rowsPerPage}
-      setRowsPerPage={setRowsPerPage}
-      count={scrapeTasks?.count || 0}
-    />
+    <div style={{ width: '100%' }}>
+      <h1>Scrape tasks</h1>
+      <Button
+        variant="outlined"
+        onClick={() => setStartScrapeTaskModalOpen(true)}
+      >
+        Start scrape task
+      </Button>
+      <ScrapeTasksTable
+        scrapeTasks={scrapeTasks?.data || []}
+        isLoading={isLoading}
+        isSuccess={isSuccess}
+        error={error?.toString() || ''}
+        page={page}
+        setPage={setPage}
+        rowsPerPage={rowsPerPage}
+        setRowsPerPage={setRowsPerPage}
+        count={scrapeTasks?.count || 0}
+      />
+      <StartScrapeTaskModal
+        open={startScrapeTaskModalOpen}
+        handleModalClose={setStartScrapeTaskModalOpen}
+      />
+    </div>
   );
 }

@@ -4,6 +4,9 @@ import { useAppDispatch } from '../../redux/hooks';
 import { setCredentials } from '../../redux/features/auth/authSlice';
 import { useLoginMutation } from '../../redux/features/auth/authApiSlice';
 
+import styles from './LoginPage.module.scss';
+import { Button } from '@mui/material';
+
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -39,27 +42,37 @@ export default function LoginPage() {
     setPassword(e.target.value);
 
   return (
-    <div>
-      <h1>Login Page</h1>
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={handleEmailInput}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={handlePasswordInput}
-          />
-          <button type="submit">Login</button>
-        </form>
-      )}
+    <div className={styles['login-page']}>
+      <div className={styles['login-page-content']}>
+        <h1>Welcome to ScrapeSense</h1>
+        <h2>Login</h2>
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={handleEmailInput}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={handlePasswordInput}
+            />
+            <Button variant="contained" type="submit">
+              Login
+            </Button>
+          </form>
+        )}
+      </div>
+      <img
+        src="/webscraping-ill.webp"
+        alt="Web scraping"
+        className={styles['illustration']}
+      />
     </div>
   );
 }
