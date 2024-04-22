@@ -23,6 +23,7 @@ export default function ScrapeTasksListPage() {
       <h1>Scrape tasks</h1>
       <Button
         variant="outlined"
+        sx={{ mb: 2, borderRadius: '8px' }}
         onClick={() => setStartScrapeTaskModalOpen(true)}
       >
         Start scrape task

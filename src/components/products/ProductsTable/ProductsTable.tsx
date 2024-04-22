@@ -45,7 +45,7 @@ export function ProductsTable({
             label: 'ID',
           },
           {
-            id: 'imageUrl',
+            id: 'imageURL',
             label: 'Image',
           },
           {
@@ -72,7 +72,7 @@ export function ProductsTable({
             <TableCell>{product.id}</TableCell>
             <TableCell>
               <img
-                src={product.imageUrl}
+                src={product.imageURL}
                 alt={product.name}
                 style={{
                   width: '70px',

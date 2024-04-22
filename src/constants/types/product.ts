@@ -5,7 +5,7 @@ interface Price {
 export interface Product {
   id: string;
   name: string;
-  imageUrl: string;
+  imageURL: string;
   websiteId: string;
   website: {
     id: string;

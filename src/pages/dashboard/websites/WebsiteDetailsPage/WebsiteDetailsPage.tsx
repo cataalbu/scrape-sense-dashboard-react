@@ -15,31 +15,32 @@ export default function WebsiteDetailsPage() {
   } = useGetWebsiteByIdQuery(id || '');
   return (
     <div className={styles['website-details-page']}>
-      <h1>Website Details</h1>
       {isLoading ? (
         <p>Loading...</p>
       ) : (
         <>
           {isSuccess ? (
-            <div>
-              <h2>{website.name}</h2>
-              <div className={styles['info-cards-container']}>
-                <InfoCard
-                  title="Website url"
-                  value={website.url}
-                  className={styles['card']}
-                />
-                <InfoCard
-                  title="Type"
-                  value={
-                    website.type === WebsiteType.CSR
-                      ? 'Client-side rendered'
-                      : 'Server-side rendered'
-                  }
-                  className={styles['card']}
-                />
+            <>
+              <h1 className={styles['title']}>{website.name}</h1>
+              <div>
+                <div className={styles['info-cards-container']}>
+                  <InfoCard
+                    title="Website url"
+                    value={website.url}
+                    className={styles['card']}
+                  />
+                  <InfoCard
+                    title="Type"
+                    value={
+                      website.type === WebsiteType.CSR
+                        ? 'Client-side rendered'
+                        : 'Server-side rendered'
+                    }
+                    className={styles['card']}
+                  />
+                </div>
               </div>
-            </div>
+            </>
           ) : (
             <div>
               <h2>{error?.toString()}</h2>

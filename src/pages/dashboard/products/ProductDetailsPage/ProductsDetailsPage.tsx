@@ -23,7 +23,7 @@ export default function ProductsDetailsPage() {
               <h1 className={styles['title']}>{product.name}</h1>
               <div className={styles['product-info']}>
                 <img
-                  src={product.imageUrl}
+                  src={product.imageURL}
                   alt={product.name}
                   style={{
                     width: '300px',
