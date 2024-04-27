@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import WebsitesListPage from '@/pages/dashboard/websites/WebsitesListPage/WebsitesListPage';
 import DashboardHomePage from '@/pages/dashboard/DashboardHomePage/DashboradHomePage';
@@ -23,7 +23,7 @@ export default function AppRouter() {
       <Route path="unauthorized" element={<div>Unauthorized</div>} />
 
       <Route element={<RedirectAuthenticatedUser />}>
-        <Route path="/" element={<div />} />
+        <Route path="/" element={<Navigate to="/login" />} />
         <Route path="login" element={<LoginPage />} />
         <Route path="register" element={<div />} />
       </Route>
