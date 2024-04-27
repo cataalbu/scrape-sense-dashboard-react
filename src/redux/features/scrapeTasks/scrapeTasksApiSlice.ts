@@ -26,6 +26,7 @@ export const scrapeTasksApiSlice = apiSlice.injectEndpoints({
         console.log('queryString', queryString);
         return queryString;
       },
+      providesTags: ['ScrapeTasks'],
     }),
     getScrapeTask: builder.query<ScrapeTask, string>({
       query: (id) => `/scrape-tasks/${id}`,
@@ -36,6 +37,7 @@ export const scrapeTasksApiSlice = apiSlice.injectEndpoints({
         method: 'POST',
         body,
       }),
+      invalidatesTags: ['ScrapeTasks'],
     }),
   }),
 });

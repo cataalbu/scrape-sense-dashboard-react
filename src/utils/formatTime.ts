@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 
 export function fDate(date: Date) {
-  return format(date, 'dd/MM/yyyy HH:mm');
+  return format(date, 'dd/MM/yyyy HH:mm:ss');
 }
 
 export function fStringDate(dateString?: string) {
