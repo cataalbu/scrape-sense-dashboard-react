@@ -44,14 +44,12 @@ export function AppTable({
     _event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null,
     newPage: number
   ) => {
-    console.log(newPage);
     setPage(newPage);
   };
 
   const handleChangeRowsPerPage: React.ChangeEventHandler<
     HTMLTextAreaElement | HTMLInputElement
   > = (event) => {
-    console.log('clicked');
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };

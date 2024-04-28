@@ -23,7 +23,6 @@ export const scrapeTasksApiSlice = apiSlice.injectEndpoints({
         if (params.toString()) {
           queryString += '?' + params.toString();
         }
-        console.log('queryString', queryString);
         return queryString;
       },
       providesTags: ['ScrapeTasks'],

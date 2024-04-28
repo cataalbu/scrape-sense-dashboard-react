@@ -19,11 +19,8 @@ export default function LoginPage() {
     e.preventDefault();
 
     try {
-      console.log('email:', email);
-      console.log('password', password);
       const userData = await login({ email, password }).unwrap();
       dispatch(setCredentials(userData));
-      console.log('User data:', userData);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       if (!error.response) {

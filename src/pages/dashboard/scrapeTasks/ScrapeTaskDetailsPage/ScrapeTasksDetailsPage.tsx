@@ -16,7 +16,7 @@ export default function ScrapeTasksDetailsPage() {
     isSuccess,
     error,
   } = useGetScrapeTaskQuery(id || '');
-  console.log(scrapeTask);
+
   return (
     <div className={styles['scrape-task-details-page']}>
       <h1 className={styles['title']}>Scrape Task Details</h1>
