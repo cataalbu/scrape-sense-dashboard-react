@@ -97,7 +97,7 @@ export default function ScrapeTasksListPage() {
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={website}
-                label="Type"
+                label="Website"
                 onChange={handleWebsiteChange}
               >
                 <MenuItem value={''}>All</MenuItem>

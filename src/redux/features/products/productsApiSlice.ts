@@ -5,9 +5,9 @@ export const productsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query<
       ProductListDto,
-      { skip?: number; limit?: number }
+      { skip?: number; limit?: number; website?: string }
     >({
-      query: ({ skip, limit }) => {
+      query: ({ skip, limit, website }) => {
         let queryString = '/products';
         const params = new URLSearchParams();
         if (skip !== undefined) {
@@ -15,6 +15,9 @@ export const productsApiSlice = apiSlice.injectEndpoints({
         }
         if (limit !== undefined) {
           params.append('limit', limit.toString());
+        }
+        if (website) {
+          params.append('website', website);
         }
         if (params.toString()) {
           queryString += '?' + params.toString();
