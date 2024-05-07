@@ -9,9 +9,15 @@ export const scrapeTasksApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getScrapeTasks: builder.query<
       ScrapeTaskListDto,
-      { skip?: number; limit?: number }
+      {
+        skip?: number;
+        limit?: number;
+        website?: string;
+        type?: string;
+        sort?: { field: string; order: 'asc' | 'desc' };
+      }
     >({
-      query: ({ skip, limit }) => {
+      query: ({ skip, limit, website, type, sort }) => {
         let queryString = '/scrape-tasks';
         const params = new URLSearchParams();
         if (skip !== undefined) {
@@ -19,6 +25,19 @@ export const scrapeTasksApiSlice = apiSlice.injectEndpoints({
         }
         if (limit !== undefined) {
           params.append('limit', limit.toString());
+        }
+        if (website) {
+          params.append('website', website);
+        }
+        if (type) {
+          params.append('type', type);
+        }
+        if (sort) {
+          console.log(sort);
+          params.append(
+            'sort',
+            `${sort.order === 'asc' ? '' : '-'}${sort.field}`
+          );
         }
         if (params.toString()) {
           queryString += '?' + params.toString();

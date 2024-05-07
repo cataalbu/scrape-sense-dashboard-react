@@ -1,7 +1,7 @@
 import { AppTable } from '@/components/common';
 import { ScrapeTask } from '@/constants/types';
 import Paths from '@/routes/paths';
-import { fStringDate } from '@/utils';
+import { fMinutesAndSeconds, fStringDate } from '@/utils';
 import { Button, TableCell, TableRow } from '@mui/material';
 import { Link, generatePath } from 'react-router-dom';
 
@@ -15,6 +15,13 @@ interface ScrapeTasksTableProps {
   rowsPerPage: number;
   setRowsPerPage: React.Dispatch<React.SetStateAction<number>>;
   count: number;
+  sort?: {
+    field: string;
+    order: 'asc' | 'desc';
+  };
+  setSort?: React.Dispatch<
+    React.SetStateAction<{ field: string; order: 'asc' | 'desc' } | undefined>
+  >;
 }
 
 export default function ScrapeTasksTable({
@@ -27,6 +34,8 @@ export default function ScrapeTasksTable({
   rowsPerPage,
   setRowsPerPage,
   count,
+  sort,
+  setSort,
 }: ScrapeTasksTableProps) {
   return (
     <AppTable
@@ -38,6 +47,9 @@ export default function ScrapeTasksTable({
       rowsPerPage={rowsPerPage}
       setRowsPerPage={setRowsPerPage}
       count={count}
+      sort={sort}
+      setSort={setSort}
+      sortableHeadCells={['id', 'startTime', 'endTime']}
       headCells={[
         {
           id: 'id',
@@ -54,6 +66,10 @@ export default function ScrapeTasksTable({
         {
           id: 'status',
           label: 'Status',
+        },
+        {
+          id: 'duration',
+          label: 'Duration',
         },
         {
           id: 'startTime',
@@ -79,6 +95,14 @@ export default function ScrapeTasksTable({
           <TableCell>{scrapeTask.website?.name || '-'}</TableCell>
           <TableCell>{scrapeTask.type}</TableCell>
           <TableCell>{scrapeTask.status}</TableCell>
+          <TableCell>
+            {scrapeTask.startTime && scrapeTask.endTime
+              ? fMinutesAndSeconds(
+                  new Date(scrapeTask.startTime),
+                  new Date(scrapeTask.endTime)
+                )
+              : '-'}
+          </TableCell>
           <TableCell>{fStringDate(scrapeTask?.startTime)}</TableCell>
           <TableCell>{fStringDate(scrapeTask?.endTime)}</TableCell>
           <TableCell>{scrapeTask.scrapeCount}</TableCell>

@@ -10,6 +10,7 @@ import {
   TableRow,
 } from '@mui/material';
 import { AppTablePagination } from '../AppTablePagination/AppTablePagination';
+import { SetStateAction } from 'react';
 
 interface AppTableProps {
   children: React.ReactElement[] | React.ReactElement;
@@ -26,6 +27,14 @@ interface AppTableProps {
   rowsPerPage: number;
   setRowsPerPage: React.Dispatch<React.SetStateAction<number>>;
   count: number;
+  sort?: {
+    field: string;
+    order: 'asc' | 'desc';
+  };
+  setSort?: React.Dispatch<
+    SetStateAction<{ field: string; order: 'asc' | 'desc' } | undefined>
+  >;
+  sortableHeadCells?: string[];
 }
 
 export function AppTable({
@@ -39,6 +48,9 @@ export function AppTable({
   rowsPerPage,
   setRowsPerPage,
   count,
+  sort,
+  setSort,
+  sortableHeadCells,
 }: AppTableProps) {
   const handleChangePage = (
     _event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null,
@@ -63,9 +75,34 @@ export function AppTable({
               <TableCell
                 key={headCell.id}
                 align={headCell.align}
-                style={{ fontWeight: 700, fontSize: '1rem' }}
+                style={{ fontWeight: 700, fontSize: '1rem', cursor: 'pointer' }}
+                onClick={() => {
+                  if (setSort && sortableHeadCells?.includes(headCell.id)) {
+                    setSort((prev) => {
+                      if (prev && prev.field === headCell.id) {
+                        if (prev.order === 'asc') {
+                          return {
+                            field: headCell.id,
+                            order: 'desc',
+                          };
+                        } else return undefined;
+                      } else
+                        return {
+                          field: headCell.id,
+                          order: 'asc',
+                        };
+                    });
+                  }
+                }}
               >
                 {headCell.label}
+                {sort?.field === headCell.id ? (
+                  sort.order === 'asc' ? (
+                    <span>&uarr;</span>
+                  ) : (
+                    <span>&darr;</span>
+                  )
+                ) : null}
               </TableCell>
             ))}
           </TableRow>

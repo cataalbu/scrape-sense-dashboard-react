@@ -3,6 +3,10 @@
   .title {
     margin-bottom: 4rem;
   }
+  .scrape-task-info-container {
+    display: flex;
+    flex-direction: column;
+  }
 
   .info-cards-container {
     display: flex;

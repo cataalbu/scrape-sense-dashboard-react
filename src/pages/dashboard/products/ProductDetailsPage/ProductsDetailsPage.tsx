@@ -75,7 +75,6 @@ export default function ProductsDetailsPage() {
                 series={[
                   {
                     data: product.prices.map((p) => p.price),
-                    showMark: ({ index }) => index % 2 === 0,
                   },
                 ]}
                 width={500}

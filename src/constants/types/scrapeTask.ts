@@ -8,6 +8,24 @@ export interface ScrapeTask {
   startTime?: string;
   endTime?: string;
   scrapeCount: number;
+  metrics?: {
+    cpuMetric: {
+      timestamps: string[];
+      values: number[];
+    };
+    networkInMetric: {
+      timestamps: string[];
+      values: number[];
+    };
+    networkOutMetric: {
+      timestamps: string[];
+      values: number[];
+    };
+    memoryUsedPercentMetric: {
+      timestamps: string[];
+      values: number[];
+    };
+  };
 }
 
 export interface CreateScrapeTaskDto {
